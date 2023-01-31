@@ -1,0 +1,9 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+}
+
+.header > .logo2 {
+    height: 49px;
+}
