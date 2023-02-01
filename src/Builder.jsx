@@ -1,10 +1,11 @@
 import { PDFViewer, Canvas } from "@react-pdf/renderer";
 import React, { useRef } from "react";
 import { useState } from "react";
+import Header from './components/Header/Header'
 import {
   Page,
   Text,
-  View,
+  Link,
   Document,
   StyleSheet,
   ReactPDF,
@@ -15,36 +16,38 @@ import "./Builder.css";
 function Builder() {
   const form = useRef();
   const [nameText, setName] = useState("");
+  const [emailText, setMail] = useState("");
+  const [phnText, setPhn] = useState("");
+  const [linkText, setLink] = useState("");
+  const [instText, setInst] = useState("");
+  const [courseText, setCourse] = useState("");
+  const [yearText, setYear] = useState("");
+  const [infoText, setInfo] = useState("");
+  const [langText, setLang] = useState("");
+  const [techText, setTech] = useState("");
   const Resume = () => (
     <Document>
       <Page size="A4" style={styles.body}>
         <Text style={styles.name}>{nameText}</Text>
         <Text style={styles.details}>
-          aakashsuresh62@gmail.com | +91 893-982-4828 | LinkedIn
+          {emailText} | +91 {phnText} | <Link src={linkText}>LinkedIn</Link>
         </Text>
         <Text style={styles.subtitle}>Education</Text>
         <Text style={styles.text}>
-          Sri Ramachandra Faculty of Engineering and Technology
+          {instText}
         </Text>
         <Text style={styles.text}>
-          B. Tech Computer Science Engineering (Artificial Intelligence and
-          Machine Learning)
+          {courseText}  {yearText}
         </Text>
         <Text style={styles.text}>
-          Courses: OOP in Java, Python, Algorithms, Operating Systems, Data
-          Structures, IoT, Web Dev, Mobile Programming.
-        </Text>
-        <Text style={styles.text}>
-          Roles: University’s Student Council Representative for Engineering
-          Department.
+         {infoText}
         </Text>
         <Text style={styles.subtitle}>Skills</Text>
         <Text style={styles.text}>
-          Languages: Python, JavaScript, HTML/CSS, Dart
+          Languages: {langText}
         </Text>
         <Text style={styles.text}>
-          Technologies: Firebase, Bash, Git, Docker, FlaskAPI, Jupyter Notebook,
-          MongoDB, Flutter, ReactJS
+          Technologies: {techText}
         </Text>
         <Text style={styles.subtitle}>Professional Experience</Text>
         <Text style={styles.subtitle2}>Augray</Text>
@@ -171,20 +174,99 @@ function Builder() {
 
   return (
     <div className="builder">
-      <div className="left">
-        <form ref={form}>
-          <input
-            type="text"
-            name="uname"
-            value={nameText}
-            onChange={(e) => setName(e.target.value)}
-          />
-          <input type="submit" />
-        </form>
+      <Header />
+      <div className="builder-body">
+        <div className="left">
+          <form ref={form}>
+            <h2>Personal Details</h2>
+            <div className="pd-1">
+              <input
+                type="text"
+                name="uname"
+                value={nameText}
+                placeholder="Name"
+                onChange={(e) => setName(e.target.value)}
+              />
+              <input
+                type="text"
+                name="mail"
+                value={emailText}
+                placeholder="Email"
+                onChange={(e) => setMail(e.target.value)}
+              />
+            </div>
+            <div className="pd-2">
+              <input
+                type="text"
+                name="phn"
+                value={phnText}
+                placeholder="Phone no."
+                onChange={(e) => setPhn(e.target.value)}
+              />
+              <input
+                type="text"
+                name="linkedin"
+                value={linkText}
+                placeholder="LinkedIn"
+                onChange={(e) => setLink(e.target.value)}
+              />
+            </div>
+            <h2>Education</h2>
+            <div className="ed-1">
+              <input
+                type="text"
+                name="inst"
+                placeholder="Institution"
+                value={instText}
+                onChange={(e) => setInst(e.target.value)}
+              />
+              <input
+                type="text"
+                name="course"
+                placeholder="Course"
+                value={courseText}
+                onChange={(e) => setCourse(e.target.value)}
+              />
+            </div>
+            <div className="ed-2">
+              <input
+                type="text"
+                name="year"
+                placeholder="Year"
+                value={yearText}
+                onChange={(e) => setYear(e.target.value)}
+              />
+              <input
+                type="text"
+                name="additional"
+                placeholder="Additional Info."
+                value={infoText}
+                onChange={(e) => setInfo(e.target.value)}
+              />
+            </div>
+            <h2>Skills</h2>
+            <div className="skill">
+              <input
+                type="text"
+                name="lang"
+                placeholder="Languages"
+                value={langText}
+                onChange={(e) => setLang(e.target.value)}
+              />
+              <input
+                type="text"
+                name="tech"
+                placeholder="Technologies"
+                value={techText}
+                onChange={(e) => setTech(e.target.value)}
+              />
+            </div>
+          </form>
+        </div>
+        <PDFViewer className="pdf">
+          <Resume />
+        </PDFViewer>
       </div>
-      <PDFViewer className="pdf">
-        <Resume />
-      </PDFViewer>
     </div>
   );
 }

@@ -1,13 +1,10 @@
-body {
-  overflow-x: hidden;
-  overflow-y: hidden;
-}
-
 .hero {
   margin-top: 152px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .hero-text {
