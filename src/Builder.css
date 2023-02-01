@@ -1,0 +1,11 @@
+.builder {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.pdf {
+  max-width: 595px;
+  max-height: 900px;
+  width: 50%;
+  height: 100vh;
+}
