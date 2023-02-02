@@ -2,7 +2,22 @@
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  overflow-y: scroll !important;
+}
 
+@media screen and (max-width: 768px) {
+  .builder-body {
+    display: flex;
+    flex-direction: column !important;
+    align-items: center;
+  }
+
+  .builder-body > .pdf {
+    max-width: 595px;
+    max-height: 900px;
+    width: 80% !important;
+    height: 80vh !important;
+  }
 }
 
 .builder-body {
@@ -19,19 +34,18 @@
 }
 
 .builder-body > .left {
-  overflow-y:scroll;
+  overflow-y: scroll;
   height: 800px;
 }
 
-
-.left{
+.left {
   margin-bottom: 50px;
   padding: 0 40px;
 }
 
 .left > form {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 form > .pd-2 {
@@ -39,7 +53,8 @@ form > .pd-2 {
   flex-direction: column;
 }
 
-form > .ed-1 , .ed-2 {
+form > .ed-1,
+.ed-2 {
   display: flex;
   flex-direction: column;
 }
@@ -49,16 +64,15 @@ form > .skill {
   flex-direction: column;
 }
 
- input {
+input {
   border: none;
   padding: 15px;
   background-color: white;
   margin: 10px;
   border-radius: 10px;
-
 }
 
- textarea {
+textarea {
   border: none;
   padding: 15px;
   background-color: white;
