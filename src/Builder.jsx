@@ -1,19 +1,35 @@
-import { PDFViewer, Canvas } from "@react-pdf/renderer";
+import { PDFViewer } from "@react-pdf/renderer";
 import React, { useRef } from "react";
 import { useState } from "react";
-import Header from './components/Header/Header'
-import {
-  Page,
-  Text,
-  Link,
-  Document,
-  StyleSheet,
-  ReactPDF,
-} from "@react-pdf/renderer";
+import Header from "./components/Header/Header";
+import { Page, Text, Link, Document, StyleSheet } from "@react-pdf/renderer";
 
 import "./Builder.css";
 
 function Builder() {
+  const [counter1, setCounter1] = useState(1);
+  const [counter2, setCounter2] = useState(1);
+  const [counter3, setCounter3] = useState(1);
+
+  const handleClick = () => {
+    if (counter1 <= 2) {
+      setCounter1(counter1 + 1);
+      console.log(counter1);
+    }
+  };
+  const handleClick2 = () => {
+    if (counter2 <= 4) {
+      setCounter2(counter2 + 1);
+      console.log(counter2);
+    }
+  };
+  const handleClick3 = () => {
+    if (counter3 <= 3) {
+      setCounter3(counter3 + 1);
+      console.log(counter3);
+    }
+  };
+
   const form = useRef();
   const [nameText, setName] = useState("");
   const [emailText, setMail] = useState("");
@@ -25,6 +41,53 @@ function Builder() {
   const [infoText, setInfo] = useState("");
   const [langText, setLang] = useState("");
   const [techText, setTech] = useState("");
+  const [org1, setOrg1] = useState({});
+  const [role1, setRole1] = useState({});
+  const [desc1, setDesc1] = useState({});
+
+  const [certificates, setCert] = useState({});
+
+  // Certifications
+  const handleOnChange = (e) => {
+    const abc = {};
+    abc[e.target.className] = e.target.value;
+    setCert({ ...certificates, ...abc });
+  };
+
+  // Professional Experience
+  const handleOrg = (e) => {
+    const abc = {};
+    abc[e.target.className] = e.target.value;
+    setOrg1({ ...org1, ...abc });
+  };
+
+  const handleRole = (e) => {
+    const abc3 = {};
+    abc3[e.target.className] = e.target.value;
+    setRole1({ ...role1, ...abc3 });
+  };
+
+  const handleDesc = (e) => {
+    const abc4 = {};
+    abc4[e.target.className] = e.target.value;
+    setDesc1({ ...desc1, ...abc4 });
+  };
+
+  // Projects
+  const [pTitle, setTitle] = useState({});
+  const [pDesc, setDesc] = useState({});
+
+  const handleTitle = (e) => {
+    const abc = {};
+    abc[e.target.className] = e.target.value;
+    setTitle({ ...pTitle, ...abc });
+  };
+  const handlePdesc = (e) => {
+    const abc = {};
+    abc[e.target.className] = e.target.value;
+    setDesc({ ...pDesc, ...abc });
+  };
+
   const Resume = () => (
     <Document>
       <Page size="A4" style={styles.body}>
@@ -33,92 +96,39 @@ function Builder() {
           {emailText} | +91 {phnText} | <Link src={linkText}>LinkedIn</Link>
         </Text>
         <Text style={styles.subtitle}>Education</Text>
+        <Text style={styles.text}>{instText}</Text>
         <Text style={styles.text}>
-          {instText}
+          {courseText} {yearText}
         </Text>
-        <Text style={styles.text}>
-          {courseText}  {yearText}
-        </Text>
-        <Text style={styles.text}>
-         {infoText}
-        </Text>
+        <Text style={styles.text}>{infoText}</Text>
         <Text style={styles.subtitle}>Skills</Text>
-        <Text style={styles.text}>
-          Languages: {langText}
-        </Text>
-        <Text style={styles.text}>
-          Technologies: {techText}
-        </Text>
+        <Text style={styles.text}>Languages: {langText}</Text>
+        <Text style={styles.text}>Technologies: {techText}</Text>
         <Text style={styles.subtitle}>Professional Experience</Text>
-        <Text style={styles.subtitle2}>Augray</Text>
-        <Text style={styles.text}>Software Intern -Machine Learning Team </Text>
-        <Text style={styles.text}>
-          • Created and implemented various chat-bots developed with the RASA
-          framework.
-        </Text>
-        <Text style={styles.text}>
-          • Implemented a working QA bot using NLP features and deployed in web
-          using flask and ngrok.
-        </Text>
-        <Text style={styles.text}>
-          • Completed researching about various question answering techniques to
-          return a sentence answer for a question asked.
-        </Text>
-        <Text style={styles.text}>
-          • Developed pixel perfect front-end using Flutter SDK.
-        </Text>
-        <Text style={styles.subtitle2}>Brainvibe</Text>
-        <Text style={styles.text}>
-          Software Developer Intern – Flutter Team
-        </Text>
-        <Text style={styles.text}>
-          • Developed pixel perfect and responsive front-end using Flutter SDK
-        </Text>
-        <Text style={styles.text}>
-          • Assisted in Back-end services using Firebase with various tools like
-          Authentication and Cloud storage.
-        </Text>
-        <Text style={styles.text}>
-          • Completed researching about various question answering techniques to
-          return a sentence answer for a question asked.
-        </Text>
-        <Text style={styles.text}>
-          • Developed pixel perfect front-end using Flutter SDK.
-        </Text>
-        <Text style={styles.subtitle2}>Freelance</Text>
-        <Text style={styles.text}>Web Developer</Text>
-        <Text style={styles.text}>
-          • Developed pixel perfect and responsive front-end using Flutter SDK
-        </Text>
-        <Text style={styles.text}>
-          • Developed pixel perfect and responsive front-end using Flutter SDK
-        </Text>
+        {Object.keys(org1, role1, desc1).map((c) => {
+          return (
+            <div>
+              <Text style={styles.subtitle2}>{">"} {org1[c]}</Text>
+              <Text style={styles.text}>{role1[c]}</Text>
+              <Text style={styles.text}>{desc1[c]}</Text>
+            </div>
+          );
+        })}
+
         <Text style={styles.subtitle}>Projects</Text>
-        <Text style={styles.cert}>MeDo</Text>
-        <Text style={styles.text}>To-do and Note taking Application</Text>
-        <Text style={styles.cert}>ARQE</Text>
-        <Text style={styles.text}>
-          AR for Quality Education at SRET Hackathon ‘22{" "}
-        </Text>
-        <Text style={styles.cert}>Google Clone(Search Engine)</Text>
-        <Text style={styles.text}>
-          Search Functionality implemented with Google API
-        </Text>
-        <Text style={styles.cert}>Twitter Clone</Text>
-        <Text style={styles.text}>
-          Tweet functionality implemented using firebase CRUD operations
-        </Text>
-        <Text style={styles.cert}>Portfolio Website</Text>
-        <Text style={styles.text}>Personal Portfolio website</Text>
+        {Object.keys(pTitle, pDesc).map((c) => {
+          return (
+            <div>
+              <Text style={styles.cert}>{">"} {pTitle[c]}</Text>
+              <Text style={styles.text}>{pDesc[c]}</Text>
+            </div>
+          );
+        })}
+
         <Text style={styles.subtitle}>Certifications</Text>
-        <Text style={styles.cert}>
-          Complete Flutter Development Bootcamp with Dart 🔗
-        </Text>
-        <Text style={styles.cert}>
-          Foundations of User Experience (UX) Design 🔗
-        </Text>
-        <Text style={styles.cert}>Blockchain Basics 🔗</Text>
-        <Text style={styles.cert}>Programming with JavaScript 🔗</Text>
+        {Object.keys(certificates).map((c) => {
+          return <Text style={styles.cert}>{">"} {certificates[c]}</Text>;
+        })}
       </Page>
     </Document>
   );
@@ -151,7 +161,7 @@ function Builder() {
     subtitle2: {
       fontSize: 14,
       marginHorizontal: 1,
-      marginTop: 3,
+      marginTop: 5,
       fontFamily: "Times-Roman",
       color: "black",
       fontWeight: 700,
@@ -260,6 +270,82 @@ function Builder() {
                 value={techText}
                 onChange={(e) => setTech(e.target.value)}
               />
+            </div>
+            <h2>Professional Experience</h2>
+            {Array.from(Array(counter1)).map((c, index) => {
+              return (
+                <div className="pe">
+                  <div className="pe-1">
+                    <input
+                      onChange={handleOrg}
+                      key={c}
+                      placeholder="Organization"
+                      className={index}
+                      type="text"
+                    ></input>
+                    <input
+                      onChange={handleRole}
+                      key={c}
+                      placeholder="Role"
+                      className={index}
+                      type="text"
+                    ></input>
+                  </div>
+                  <div className="pe-desc-1">
+                    <textarea
+                    rows={7}
+                      onChange={handleDesc}
+                      key={c}
+                      placeholder="Description"
+                      className={index}
+                      type="text"
+                    ></textarea>
+                  </div>
+                </div>
+              );
+            })}
+
+            <div className="btn" onClick={handleClick}>
+              Add Experience
+            </div>
+            <h2>Projects</h2>
+            {Array.from(Array(counter2)).map((c, index) => {
+              return (
+                <div className="pe-1">
+                  <input
+                    onChange={handleTitle}
+                    key={c}
+                    placeholder="Title"
+                    className={index}
+                    type="text"
+                  ></input>
+                  <input
+                    onChange={handlePdesc}
+                    key={c}
+                    placeholder="Description"
+                    className={index}
+                    type="text"
+                  ></input>
+                </div>
+              );
+            })}
+            <div className="btn" onClick={handleClick2}>
+              Add Certificates
+            </div>
+            <h2>Certifications</h2>
+            {Array.from(Array(counter3)).map((c, index) => {
+              return (
+                <input
+                  onChange={handleOnChange}
+                  key={c}
+                  placeholder="Title"
+                  className={index}
+                  type="text"
+                ></input>
+              );
+            })}
+            <div className="btn" onClick={handleClick3}>
+              Add Certificates
             </div>
           </form>
         </div>
