@@ -1,8 +1,14 @@
-import { PDFViewer } from "@react-pdf/renderer";
 import React, { useRef } from "react";
 import { useState } from "react";
 import Header from "./components/Header/Header";
-import { Page, Text, Link, Document, StyleSheet } from "@react-pdf/renderer";
+import {
+  Page,
+  Text,
+  Link,
+  Document,
+  StyleSheet,
+  PDFViewer,
+} from "@react-pdf/renderer";
 
 import "./Builder.css";
 
@@ -89,11 +95,14 @@ function Builder() {
   };
 
   const Resume = () => (
-    <Document>
+    <Document className="doc">
       <Page size="A4" style={styles.body}>
         <Text style={styles.name}>{nameText}</Text>
         <Text style={styles.details}>
-          {emailText} | +91 {phnText} | <Link src={linkText}>LinkedIn</Link>
+          {emailText} | +91 {phnText} |{" "}
+          <a href={linkText}>
+            <Text>LinkedIn</Text>
+          </a>
         </Text>
         <Text style={styles.subtitle}>Education</Text>
         <Text style={styles.text}>{instText}</Text>
@@ -107,8 +116,10 @@ function Builder() {
         <Text style={styles.subtitle}>Professional Experience</Text>
         {Object.keys(org1, role1, desc1).map((c) => {
           return (
-            <div>
-              <Text style={styles.subtitle2}>{">"} {org1[c]}</Text>
+            <div className="org">
+              <Text style={styles.subtitle2}>
+                {">"} {org1[c]}
+              </Text>
               <Text style={styles.text}>{role1[c]}</Text>
               <Text style={styles.text}>{desc1[c]}</Text>
             </div>
@@ -118,8 +129,10 @@ function Builder() {
         <Text style={styles.subtitle}>Projects</Text>
         {Object.keys(pTitle, pDesc).map((c) => {
           return (
-            <div>
-              <Text style={styles.cert}>{">"} {pTitle[c]}</Text>
+            <div className="prj">
+              <Text style={styles.cert}>
+                {">"} {pTitle[c]}
+              </Text>
               <Text style={styles.text}>{pDesc[c]}</Text>
             </div>
           );
@@ -127,7 +140,11 @@ function Builder() {
 
         <Text style={styles.subtitle}>Certifications</Text>
         {Object.keys(certificates).map((c) => {
-          return <Text style={styles.cert}>{">"} {certificates[c]}</Text>;
+          return (
+            <Text style={styles.cert}>
+              {">"} {certificates[c]}
+            </Text>
+          );
         })}
       </Page>
     </Document>
@@ -135,9 +152,11 @@ function Builder() {
 
   const styles = StyleSheet.create({
     body: {
-      paddingTop: 35,
-      paddingBottom: 35,
-      paddingHorizontal: 20,
+      paddingTop: 30,
+      paddingHorizontal: 15,
+      paddingBottom: 25,
+      display: "flex",
+      flexDirection: "column",
     },
     name: {
       fontSize: 20,
@@ -293,7 +312,7 @@ function Builder() {
                   </div>
                   <div className="pe-desc-1">
                     <textarea
-                    rows={7}
+                      rows={7}
                       onChange={handleDesc}
                       key={c}
                       placeholder="Description"
@@ -349,9 +368,9 @@ function Builder() {
             </div>
           </form>
         </div>
-        <PDFViewer className="pdf">
+        <div className="resume">
           <Resume />
-        </PDFViewer>
+        </div>
       </div>
     </div>
   );

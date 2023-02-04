@@ -1,4 +1,16 @@
-* {
+body {
   margin: 0;
   background-color: #eeeeee;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+
+
+::-webkit-scrollbar-thumb {
+  background: black;
+  border: 1px solid #eeeeee;
+  -webkit-border-radius: 20px; 
 }
