@@ -109,7 +109,7 @@ function Builder() {
         <Text style={styles.subtitle}>Education</Text>
         <Text style={styles.text}>{instText}</Text>
         <Text style={styles.text}>
-          {courseText} ({yearText})
+          {courseText} {yearText}
         </Text>
         <Text style={styles.text}>{infoText}</Text>
         <Text style={styles.subtitle}>Skills</Text>
