@@ -11,11 +11,13 @@
     flex-direction: column !important;
     align-items: center;
   }
-  .builder-body > .left {
+
+  .builder-body>.left {
     overflow-y: scroll;
     height: 400px !important;
   }
-  .builder-body > .pdf {
+
+  .builder-body>.pdf {
     max-width: 595px;
     max-height: 900px;
     width: 80% !important;
@@ -24,31 +26,39 @@
 }
 
 .builder-body {
-  padding: 0 80px;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
 }
 
-.builder-body > .resume {
-  max-width: 595px;
-  max-height: 900px;
-  width: 50%;
-  height: 90vh;
-  background-color: white !important;
-  padding-left: 20px;
-  box-shadow: 5px 10px;
-  border: 2px black solid;
-
-}
-
-.builder-body > .left {
+.builder-body>.left {
+  margin: 10px;
   border: 3px solid black;
-  /* border-radius: 30px; */
   overflow-y: scroll;
-  height: 800px;
+  height: 830px;
+  width: 400px;
   padding-top: 10px;
   padding-bottom: 0;
+  border-radius: 30px;
+  background-color: black;
+  color: white;
+}
+
+.div {
+  display: flex;
+  width: max-content;
+  justify-content: space-between;
+}
+
+.builder-body>.div>.resume {
+  width: 560px;
+  background-color: white !important;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 10px;
+  box-shadow: 5px 10px;
+  white-space: pre;
+  border: 2px black solid;
 }
 
 .left {
@@ -56,23 +66,23 @@
   padding: 0 40px;
 }
 
-.left > form {
+.left>form {
   display: flex;
   flex-direction: column;
 }
 
-form > .pd-2 {
+form>.pd-2 {
   display: flex;
   flex-direction: column;
 }
 
-form > .ed-1,
+form>.ed-1,
 .ed-2 {
   display: flex;
   flex-direction: column;
 }
 
-form > .skill {
+form>.skill {
   display: flex;
   flex-direction: column;
 }
@@ -97,34 +107,63 @@ h2 {
   margin-top: 10px;
 }
 
-.pe > .pe-desc-1 {
+.pe>.pe-desc-1 {
   display: flex;
   flex-direction: column;
 }
+
 button {
   background-color: none;
   border: none;
 }
+
 .btn {
   text-align: center;
   background-color: black;
   color: white;
   padding: 20px 60px;
   font-weight: bold;
-  transition: ease-out 0.1s;
+  transition: ease-out 0.4s all;
   margin-bottom: 20px;
 }
 
 .btn:hover {
   filter: drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.25));
-  border: 4px solid black;
   cursor: pointer;
+  color: black;
+  background-color: white;
 }
 
 .org,
 .prj {
   display: flex;
   flex-direction: column;
+  overflow-wrap: break-word;
 }
 
+.download-link{
+  margin: 10px;
+}
 
+.download-link > a {
+  text-decoration: none;
+  color: white;
+  background-color: black;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 10px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 30px;
+}
+
+.header>.logo2 {
+  height: 40px;
+}
+
+.header>.logo {
+  height: 40px;
+}

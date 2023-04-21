@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  background-color: #eeeeee;
+  background-color: #ffffff;
 }
 
 ::-webkit-scrollbar {
@@ -10,7 +10,7 @@ body {
 
 
 ::-webkit-scrollbar-thumb {
-  background: black;
+  background: white;
   border: 1px solid #eeeeee;
   -webkit-border-radius: 20px; 
 }

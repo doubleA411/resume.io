@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { useState } from "react";
-import Header from "./components/Header/Header";
+import logo from "./assets/logo.png";
+// import Header from "./components/Header/Header";
 import {
   Page,
   Text,
@@ -8,6 +9,7 @@ import {
   Document,
   StyleSheet,
   PDFViewer,
+  PDFDownloadLink,
 } from "@react-pdf/renderer";
 
 import "./Builder.css";
@@ -107,7 +109,7 @@ function Builder() {
         <Text style={styles.subtitle}>Education</Text>
         <Text style={styles.text}>{instText}</Text>
         <Text style={styles.text}>
-          {courseText} {yearText}
+          {courseText} ({yearText})
         </Text>
         <Text style={styles.text}>{infoText}</Text>
         <Text style={styles.subtitle}>Skills</Text>
@@ -190,6 +192,7 @@ function Builder() {
       fontSize: 11,
       textAlign: "justify",
       fontFamily: "Times-Roman",
+      lineHeight: 1.4,
     },
 
     cert: {
@@ -203,7 +206,16 @@ function Builder() {
 
   return (
     <div className="builder">
-      <Header />
+      <div className="header">
+        <img className="logo" src={logo} alt="" />
+        <div className="download-link">
+          <PDFDownloadLink document={<Resume />} fileName="resumeio.pdf">
+            {({ blob, url, loading, error }) =>
+              loading ? "Loading document..." : "Download now!"
+            }
+          </PDFDownloadLink>
+        </div>
+      </div>
       <div className="builder-body">
         <div className="left">
           <form ref={form}>
@@ -368,8 +380,10 @@ function Builder() {
             </div>
           </form>
         </div>
-        <div className="resume">
-          <Resume />
+        <div className="div">
+          <div className="resume">
+            <Resume />
+          </div>
         </div>
       </div>
     </div>
