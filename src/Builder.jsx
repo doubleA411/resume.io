@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
 import { useState } from "react";
 import logo from "./assets/logo.png";
-// import Header from "./components/Header/Header";
 import {
   Page,
   Text,

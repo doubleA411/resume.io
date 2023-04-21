@@ -1,8 +1,6 @@
 import './App.css';
 import Builder from './Builder';
 import Home from './Home';
-import Header from './components/Header/Header';
-import Hero from './components/Hero/Hero';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 
