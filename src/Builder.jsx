@@ -105,16 +105,22 @@ function Builder() {
             <Text>LinkedIn</Text>
           </a>
         </Text>
+
         <Text style={styles.subtitle}>Education</Text>
         <Text style={styles.text}>{instText}</Text>
         <Text style={styles.text}>
-          {courseText} {yearText}
+          {courseText}  {yearText}
         </Text>
         <Text style={styles.text}>{infoText}</Text>
         <Text style={styles.subtitle}>Skills</Text>
-        <Text style={styles.text}>Languages: {langText}</Text>
-        <Text style={styles.text}>Technologies: {techText}</Text>
-        <Text style={styles.subtitle}>Professional Experience</Text>
+        <Text className="lang" style={styles.text}>
+          Languages: {langText}
+        </Text>
+        <Text className="tech" style={styles.text}>
+          Technologies: {techText}
+        </Text>
+        <Text className = "subhead" style={styles.subtitle}>Professional Experience</Text>
+
         {Object.keys(org1, role1, desc1).map((c) => {
           return (
             <div className="org">
@@ -128,6 +134,7 @@ function Builder() {
         })}
 
         <Text style={styles.subtitle}>Projects</Text>
+
         {Object.keys(pTitle, pDesc).map((c) => {
           return (
             <div className="prj">
@@ -140,9 +147,10 @@ function Builder() {
         })}
 
         <Text style={styles.subtitle}>Certifications</Text>
+
         {Object.keys(certificates).map((c) => {
           return (
-            <Text style={styles.cert}>
+            <Text className="cert" style={styles.cert}>
               {">"} {certificates[c]}
             </Text>
           );
@@ -158,6 +166,7 @@ function Builder() {
       paddingBottom: 25,
       display: "flex",
       flexDirection: "column",
+
     },
     name: {
       fontSize: 20,
@@ -360,7 +369,7 @@ function Builder() {
               );
             })}
             <div className="btn" onClick={handleClick2}>
-              Add Certificates
+              Add Projects
             </div>
             <h2>Certifications</h2>
             {Array.from(Array(counter3)).map((c, index) => {

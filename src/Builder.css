@@ -1,8 +1,21 @@
+body {
+  overflow-y: scroll !important;
+}
+
 .builder {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  overflow-y: scroll !important;
+
+  /* overflow-y: scroll !important; */
+}
+
+.subhead {
+  font-weight: bolder;
+}
+
+.line {
+  width: 570px;
 }
 
 @media screen and (max-width: 768px) {
@@ -135,17 +148,21 @@ button {
 }
 
 .org,
-.prj {
+.lang,
+.tech,
+.prj,
+.cert {
   display: flex;
   flex-direction: column;
   overflow-wrap: break-word;
+  white-space: pre-wrap;
 }
 
-.download-link{
+.download-link {
   margin: 10px;
 }
 
-.download-link > a {
+.download-link>a {
   text-decoration: none;
   color: white;
   background-color: black;
